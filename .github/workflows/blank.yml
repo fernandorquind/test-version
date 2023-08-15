@@ -52,6 +52,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: false 
+          release_branches: develop,release,main
           
       - name: GitHub Tag others
         if: github.ref != 'refs/heads/main'
