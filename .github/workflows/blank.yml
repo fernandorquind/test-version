@@ -62,7 +62,6 @@ jobs:
           release_branches: develop,release,main
     
       - name: echo new version
-        if: inputs.dry_run == true
         run: |
           echo "The current tag is: ${{ steps.tagger.outputs.new_version }}"
             
