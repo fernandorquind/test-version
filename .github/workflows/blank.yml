@@ -6,9 +6,20 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - feature/frodriguez/changes
+      - release
+      - develop
+      
+    
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - feature/frodriguez/changes
+      - release
+      - develop
+      
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,3 +45,17 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - name: GitHub Tag
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: ${{ inputs.dry_run }}
+          release_branches: develop,release,main
+    
+      - name: echo new version
+        if: inputs.dry_run == true
+        run: |
+          echo "The current tag is: ${{ steps.tagger.outputs.new_version }}"
+            
+            
