@@ -49,10 +49,7 @@ jobs:
           echo test, and deploy your project.
 
       - name: Setear nombre de la rama en variable de entorno
-        run: echo "HEAD_REF=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
-
-      - name: Usar la variable en otro paso
-        run: echo "El pull request viene de la rama $HEAD_REF"
+        run: echo ${{ github.head_ref }}
 
           
       - name: GitHub Tag
