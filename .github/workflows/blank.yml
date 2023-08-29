@@ -15,10 +15,9 @@ on:
       
     
   pull_request:
+    types:
+        - closed
     branches:
-      - main
-      - feature/frodriguez/changes
-      - release
       - develop
       - hotfix/versionamiento
       
