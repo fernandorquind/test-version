@@ -54,6 +54,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: mathieudutour/github-tag-action@v6.1
         with:
+          default_bump: minor
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: false 
           release_branches: develop,release,main
@@ -65,6 +66,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
           release_branches: develop,release,main
+          default_bump: patch
           
       - name: GitHub Tag others
         if: github.ref == 'refs/heads/feature/frodriguez/changes' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/release'
