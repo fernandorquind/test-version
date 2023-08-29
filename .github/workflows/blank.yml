@@ -49,7 +49,7 @@ jobs:
 
       - name: Setear nombre de la rama en variable de entorno
         run: | 
-          TOKEN="tu_token_de_acceso_personal"
+          TOKEN=${{ secrets.GITHUB_TOKEN }}
           OWNER=${{ github.REPOSITORY_OWNER }}
           REPO="test-version"
           LATEST_PR=$(curl -s -H "Authorization: token $TOKEN" \
