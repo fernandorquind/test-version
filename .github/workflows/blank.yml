@@ -50,10 +50,7 @@ jobs:
 
       - name: Setear nombre de la rama en variable de entorno
         run: |
-          echo ${{ github.head_ref }}
-          echo ${{ github.base_ref }}
-          echo ${{ github.ref_name }}
-
+          echo ${{ github.event.pull_request.head.ref }}
           
       - name: GitHub Tag
         if: github.ref == 'refs/heads/main'
