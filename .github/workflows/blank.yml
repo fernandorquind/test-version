@@ -64,7 +64,7 @@ jobs:
           release_branches: develop,release,main
           
       - name: GitHub Tag others
-        if: github.ref == 'refs/heads/feature/frodriguez/changes' || github.ref == 'refs/heads/develop' github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/feature/frodriguez/changes' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/release'
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
