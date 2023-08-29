@@ -47,6 +47,10 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Identificar rama de origen
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'feature/frodriguez/changes'
+        run: echo "viene de feature fernando"
+
           
       - name: GitHub Tag
         if: github.ref == 'refs/heads/main'
