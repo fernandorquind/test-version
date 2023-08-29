@@ -11,6 +11,7 @@ on:
       - feature/frodriguez/changes
       - release
       - develop
+      - hotfix/versionamiento
       
     
   pull_request:
@@ -19,6 +20,7 @@ on:
       - feature/frodriguez/changes
       - release
       - develop
+      - hotfix/versionamiento
       
 
   # Allows you to run this workflow manually from the Actions tab
@@ -55,16 +57,22 @@ jobs:
           release_branches: develop,release,main
           
       - name: GitHub Tag others
-        if: github.ref != 'refs/heads/main'
-        id: tagger
+        if: github.ref == 'refs/heads/hotfix/versionamiento'
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
           release_branches: develop,release,main
+          
+      - name: GitHub Tag others
+        if: github.ref == 'refs/heads/feature/frodriguez/changes' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/release'
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true
+          default_bump: minor
+          release_branches: develop,release,main
     
-      - name: echo new version
-        run: |
-          echo "The current tag is: ${{ steps.tagger.outputs.new_version }}"
+    
             
             
