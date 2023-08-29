@@ -47,6 +47,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
       - name: Setear nombre de la rama en variable de entorno
         run: echo "HEAD_REF=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
 
