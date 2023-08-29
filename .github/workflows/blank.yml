@@ -65,7 +65,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
-          release_branches: develop,release,main
+          release_branches: hotfix/versionamiento
           default_bump: patch
           
       - name: GitHub Tag others
