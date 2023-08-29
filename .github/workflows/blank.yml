@@ -48,8 +48,14 @@ jobs:
           echo test, and deploy your project.
 
       - name: Setear nombre de la rama en variable de entorno
-        run: |
-          echo ${{ github.event.pull_request.head.ref }}
+        run: | 
+          TOKEN=${{ secrets.GITHUB_TOKEN }}
+          OWNER=${{ github.REPOSITORY_OWNER }}
+          REPO="test-version"
+          LATEST_PR=$(curl -s -H "Authorization: token $TOKEN" \
+            "https://api.github.com/repos/$OWNER/$REPO/pulls?state=all&sort=created&direction=desc&page=1&per_page=1")
+          SOURCE_BRANCH=$(echo $LATEST_PR | jq -r '.[0].head.ref')
+          echo "El último pull request provino de la rama: $SOURCE_BRANCH"
           
       - name: GitHub Tag
         if: github.ref == 'refs/heads/main'
