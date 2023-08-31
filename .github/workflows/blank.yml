@@ -76,6 +76,7 @@ jobs:
           dry_run: true
           release_branches: hotfix/versionamiento
           default_bump: patch
+
           
       - name: GitHub Tag others
         if: github.ref == 'refs/heads/feature/frodriguez/changes' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/release'
