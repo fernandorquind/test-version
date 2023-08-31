@@ -36,6 +36,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -64,6 +66,7 @@ jobs:
           default_bump: minor
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: false 
+          release_branches: develop,release,main
           
       - name: GitHub Tag others
         if: github.ref == 'refs/heads/hotfix/versionamiento'
@@ -72,6 +75,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
           release_branches: hotfix/versionamiento
+          default_bump: patch
+
           
       - name: GitHub Tag others
         if: github.ref == 'refs/heads/feature/frodriguez/changes' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/release'
